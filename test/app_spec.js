@@ -6,9 +6,14 @@ var event = require("./lambda_driver/s3_put_event");
 
 describe('app.js', function() {
     describe('lambda', function() {
-        var lambda = require("../app");
-        lambda.handler(event, context);
+        it("calls context#done", function() {
+            var spy = sinon.spy();
+            context.done = spy;
 
-        expect(true).to.eq(true);
+            var lambda = require("../app");
+            lambda.handler(event, context);
+
+            expect(spy.called).to.eq(true);
+        });
     });
 });
