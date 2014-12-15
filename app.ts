@@ -1,12 +1,8 @@
 /// <reference path="lambda.d.ts" />
 
-declare class SampleEvent {
-    hoge: string;
-}
-
-exports.handler = function(event: SampleEvent, context: Context) {
-    console.log("whoa!");
-    console.log(event.hoge);
+exports.handler = function(event: S3PutEvent, context: Context) {
+    console.log(event[0].eventVersion);
+    console.log(event[0].s3.object.key);
 
     context.done(null, "done!");
 }
