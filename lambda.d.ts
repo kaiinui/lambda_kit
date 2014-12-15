@@ -2,8 +2,19 @@ declare var exports: Exports;
 declare class Exports {
     public handler: Function;
 }
+
 interface Context {
+    /**
+     * You should call this method when your job become done.
+     *
+     * @param err If any error is happen.
+     * @param value Pass some string to log to console.
+     */
     done(err: any, value: string): void;
+
+    /**
+     * An unique string ID for each invocation.
+     */
     invokeid: string;
 }
 
